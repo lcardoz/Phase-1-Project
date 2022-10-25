@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
     <script defer src="index.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>NASA Image Search</title>
 </head>
 <body>
-    <form id="search-form">
-        <label for="search">Enter Your Celestial Object Here:</label> <br>
-        <textarea id="search"></textarea> <br>
-        <button type="submit">Search!</button> 
-</body>
+    <h1 id="main-title">
+      <div>
+        <img id="nasa-logo" src=" https://www.nasa.gov/sites/all/themes/custom/nasatwo/images/nasa-logo.svg" alt="nasa-logo" />
+      </div>
+      <div>
+        <span> NASA Space Images</span>
+        <br>
+        <span class="sub-title">Solar System and Beyond</span>
+      </div>
+    </h1>
+    <main class="two-columns">
+        <div>
+            <form id="search-form">
+                <input class = "search-bar" type="text" name="search" placeholder="Enter Any Space-Related Thing">
+                <input type="submit" value="Search">
+            </form>
+            
+            <button  id="prevButton"> Prev </button>
+            <button id="nextButton"> Next </button>
+            <h2 id="image-title"></h2>
+            <p id="image-description"></p>
+        </div>
+        <div>
+            <img id="nasa-image" src="https://images.pexels.com/photos/47367/full-moon-moon-bright-sky-47367.jpeg?cs=srgb&dl=pexels-pixabay-47367.jpg&fm=jpg" alt="current image" />
+        </div>
+    </main>
+    <div id = 'gallery'>
+
+    </div>
+    <footer></footer>
+  </body>
 </html>
