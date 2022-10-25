@@ -57,31 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(dataObj => {
             //console.log(dataObj.collection.items)
             resultArray = dataObj.collection.items;
-            //console.log ( "resultArray: " , resultArray)
-            renderSearch(resultArray[currentIndex])
 
-            const newImgDataArray = resultArray.map( (dataObj) => { 
-                return dataObj.links } )
-                //console.log( "newImgDataArray: " , newImgDataArray )
+            if(resultArray.length > 0) {
+                //console.log ( "resultArray: " , resultArray)
+                renderSearch(resultArray[currentIndex])
 
-            const filteredArray = newImgDataArray.filter(element => {
-                return element !== undefined;})
-                //console.log( "filteredArray: " , filteredArray )
+                const newImgDataArray = resultArray.map( (dataObj) => { 
+                    return dataObj.links } )
+                    //console.log( "newImgDataArray: " , newImgDataArray )
 
-            const finalImageArray = filteredArray.map(element => {
-                return element[0].href });
-                //console.log( "finalImageArray: ", finalImageArray )
+                const filteredArray = newImgDataArray.filter(element => {
+                    return element !== undefined;})
+                    //console.log( "filteredArray: " , filteredArray )
+
+                const finalImageArray = filteredArray.map(element => {
+                    return element[0].href });
+                    //console.log( "finalImageArray: ", finalImageArray )
             
-            const galleryContainer = document.querySelector('#gallery')
-            galleryContainer.innerHTML = '';
+                const galleryContainer = document.querySelector('#gallery')
+                galleryContainer.innerHTML = '';
             
-            
-            finalImageArray.forEach (imageUrl => {
-                //console.log(imageUrl)
-                const galleryImage = document.createElement('img');
-                galleryImage.src = imageUrl;
-                galleryContainer.append(galleryImage);
-            })
+                finalImageArray.forEach (imageUrl => {
+                    //console.log(imageUrl)
+                    const galleryImage = document.createElement('img');
+                    galleryImage.src = imageUrl;
+                    galleryContainer.append(galleryImage);
+                })
+            }
+            else {
+                window.alert('No images found')
+            }
         })
     })
 });
