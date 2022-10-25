@@ -1,3 +1,9 @@
+// TO DO & TO EXPERIMENT WITH:
+// - create image carousel OR image containers (like Toy Story lab)
+// - change fonts, make style pretty
+// - animated css background?
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchContainer = document.querySelector('#search-form');
     const imgNasa = document.querySelector('#nasa-image');
