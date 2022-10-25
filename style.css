@@ -11,7 +11,7 @@ body {
     padding: 2em;
     background-image: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmlnaHQlMjBza3l8ZW58MHx8MHx8&w=1000&q=80');
     background-repeat: repeat;
-    background-size: cover;
+    background-size: contain;
     color: azure;
 }
 
@@ -24,12 +24,12 @@ body {
 }
 
 .sub-title {
-     font-size: 0.5em;
+    font-size: 0.5em;
     color:rgb(158, 121, 121)
 }
 
 h2 {
-    color:rgb(239, 243, 243)
+    color:red
 }
 
 #nasa-image {
@@ -40,4 +40,12 @@ h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 4em;
+}
+
+#gallery-title {
+    color:rgb(158, 121, 121);
+    text-align: center;
+    border-top: solid #15418c 10px;
+    border-bottom:solid  #15418c 10px;
+    padding: 1.5em 0 1.5em 0;
 }

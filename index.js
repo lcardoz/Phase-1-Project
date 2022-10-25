@@ -21,14 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    let renderPrevItem = () =>{
-      currentIndex -= 1
-      renderSearch(resultArray[currentIndex])
+    let renderPrevItem = () => {
+        if(currentIndex > 0) {
+            currentIndex -= 1
+            renderSearch(resultArray[currentIndex])
+        }
+        else {
+              window.alert('No previous image ')
+        }
     }
 
-    let renderNextItem = () =>{
-      currentIndex += 1
-      renderSearch(resultArray[currentIndex])
+    let renderNextItem = () => {
+        if(currentIndex < 99) {
+            currentIndex += 1
+            renderSearch(resultArray[currentIndex])
+        }
+        else {
+              window.alert('No next image ')
+        }
     }
 
     document.querySelector("#nextButton").addEventListener("click",renderNextItem)
@@ -37,7 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
     searchContainer.addEventListener('submit', (e) => {
         e.preventDefault();
         const searchInput = e.target.search.value;
-        
+        const galleryTitle = document.querySelector('#gallery-title');
+        galleryTitle.innerHTML = 'Image Gallery: '
+
+        currentIndex = 0;
+
         fetch(`https://images-api.nasa.gov/search?q=${searchInput}`)
             .then(response => response.json())
             .then(dataObj => {
@@ -59,12 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 //console.log( "finalImageArray: ", finalImageArray )
             
             const galleryContainer = document.querySelector('#gallery')
-
+            galleryContainer.innerHTML = '';
+            
+            
             finalImageArray.forEach (imageUrl => {
                 //console.log(imageUrl)
                 const galleryImage = document.createElement('img');
                 galleryImage.src = imageUrl;
-                galleryContainer.append(galleryImage)
+                galleryContainer.append(galleryImage);
             })
         })
     })
