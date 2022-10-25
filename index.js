@@ -3,6 +3,8 @@ const docBody = document.querySelector('body');
 const searchContainer = document.querySelector('form');
 const imgContainer = document.createElement('div');
 const imgNasa = document.createElement('img');
+const imgTitle = document.createElement('h1');
+const imgDescription = document.createElement('p');
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -17,16 +19,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 //console.log(dataObj.collection)
             
                 imgNasa.src = dataObj.collection.items[0].links[0].href;
-                //console.log(dataObj.collection.items[0].links[0].href)
-                searchContainer.appendChild(imgContainer);
+                //console.log(dataObj.collection.items[0].links[0].href);
+                imgTitle.textContent = dataObj.collection.items[0].data[0].title;
+                imgDescription.textContent = dataObj.collection.items[0].data[0].description;
                 imgContainer.appendChild(imgNasa);
-                docBody.appendChild(searchContainer);
+                docBody.append(searchContainer, imgTitle, imgContainer, imgDescription);
 
-                console.log (dataObj.collection.items)
                 const imgDataArray = dataObj.collection.items
-                let newImgDataArray = imgDataArray.map((imgData) => 
-                    dataObj.collection.items[0].links[0].href
-                )
+                console.log ( "imgDataArray: " , imgDataArray)
+                
+                const newImgDataArray = imgDataArray.map( (dataObj) => { 
+                    return dataObj.links } )
+                    console.log( "newImgDataArray: " , newImgDataArray )
+
+                const filteredArray = newImgDataArray.filter(element => {
+                    return element !== undefined;})
+                    console.log( "filteredArray: " , filteredArray )
+
+                const finalImageArray = filteredArray.map(element => {
+                    return element[0].href });
+                    console.log( "finalImageArray: ", finalImageArray )
+                
+
+                
+
+                // let newImgDataArray = [];
+                // for (let i = 0; i < dataObj.collection.items.length; i++) {
+                //     newImgDataArray.push(dataObj.collection.items[i].links[0].href)
+                // }
+                // console.log(newImgDataArray)
                 // const newArray = dataObj.collection.items.map 
                 // const imgArray = [];
                 // let itemIndex = 0;
