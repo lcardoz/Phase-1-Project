@@ -1,8 +1,3 @@
-// TO DO & TO EXPERIMENT WITH:
-// - make style pretty / more fun
-// - animated css background?
-// - optimize mobile view
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchContainer = document.querySelector('#search-form');
     const imgNasa = document.querySelector('#nasa-image');
@@ -92,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.alert("No results found")
             }
         })
-        
         searchContainer.reset();
     })
 });
