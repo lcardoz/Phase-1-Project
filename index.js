@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     let renderNextItem = () => {
-        if(currentIndex < 99) {
+        if(currentIndex < resultArray.length -1) {
             currentIndex += 1
             renderSearch(resultArray[currentIndex])
         }
