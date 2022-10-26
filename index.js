@@ -1,7 +1,7 @@
 // TO DO & TO EXPERIMENT WITH:
-// - create image carousel OR image containers (like Toy Story lab)
-// - change fonts, make style pretty
+// - make style pretty / more fun
 // - animated css background?
+// - optimize mobile view
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchContainer = document.querySelector('#search-form');
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgDescription.innerText = spaceObject.data[0].description
         if (spaceObject.links !== undefined) {
             imgNasa.src = spaceObject.links[0].href
+            
         }
         else {
             imgNasa.src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg'
