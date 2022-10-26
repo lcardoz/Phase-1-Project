@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgNasa = document.querySelector('#nasa-image');
     const imgTitle = document.querySelector('#image-title');
     const imgDescription = document.querySelector('#image-description');
+
     let resultArray = [];
     let currentIndex = 0;
+
     let renderSearch = (spaceObject) => {
         // console.log(spaceObject);
         imgTitle.innerText = spaceObject.data[0].title
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imgNasa.src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg'
         }
     }
+
     function galleryDisplay(data) {
         const newImgDataArray = resultArray.map( (data) => {
             return data.links } )
@@ -35,38 +38,50 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryContainer.innerHTML = ''
         finalImageArray.forEach (imageUrl => {
             const galleryImage = document.createElement('img');
+            galleryImage.className = "gallery-image";
             galleryImage.src = imageUrl;
             galleryContainer.append(galleryImage)
         })
     }
-    let renderPrevItem = () =>{
-    if(currentIndex > 0){
-      currentIndex -= 1
-      renderSearch(resultArray[currentIndex])
-    }else{
-        window.alert('No previous image ')
+
+    let renderPrevItem = () => {
+        if(currentIndex > 0) {
+            currentIndex -= 1
+            renderSearch(resultArray[currentIndex])
+        }
+        else{
+            window.alert('No previous image ')
+        }
     }
+    
+    let renderNextItem = () => {
+        currentIndex += 1
+        renderSearch(resultArray[currentIndex])
     }
-    let renderNextItem = () =>{
-      currentIndex += 1
-      renderSearch(resultArray[currentIndex])
-    }
-    document.querySelector("#nextButton").addEventListener("click",renderNextItem)
-    document.getElementById('prevButton').addEventListener('click', renderPrevItem)
+
+    document.querySelector("#nextButton").addEventListener("click",renderNextItem);
+    document.getElementById('prevButton').addEventListener('click', renderPrevItem);
+    
     searchContainer.addEventListener('submit', (e) => {
         e.preventDefault();
         const searchInput = e.target.search.value;
-        currentIndex = 0
+        currentIndex = 0;
+
+        if(searchInput === '') {
+            window.alert("Please enter a search term")
+        }
+
         fetch(`https://images-api.nasa.gov/search?q=${searchInput}`)
             .then(response => response.json())
             .then(dataObj => {
             //console.log(dataObj.collection.items)
             resultArray = dataObj.collection.items;
-            console.log ( "resultArray: " , resultArray)
+            //console.log ( "resultArray: " , resultArray)
             if(resultArray.length > 0) {
-            renderSearch(resultArray[currentIndex])
-            galleryDisplay(dataObj[currentIndex])
-            }else{
+                renderSearch(resultArray[currentIndex])
+                galleryDisplay(dataObj[currentIndex])
+            }
+            else {
                 window.alert("No results found")
             }
         })
