@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgNasa = document.querySelector('#nasa-image');
     const imgTitle = document.querySelector('#image-title');
     const imgDescription = document.querySelector('#image-description');
-
     let resultArray = [];
     let currentIndex = 0;
 
@@ -20,10 +19,35 @@ document.addEventListener('DOMContentLoaded', () => {
             imgNasa.src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg'
         }
     }
+    function galleryDisplay(data) {
+        const newImgDataArray = resultArray.map( (data) => { 
+            return data.links } )
+            //console.log( "newImgDataArray: " , newImgDataArray )
 
+        const filteredArray = newImgDataArray.filter(element => {
+            return element !== undefined;})
+            //console.log( "filteredArray: " , filteredArray )
+
+        const finalImageArray = filteredArray.map(element => {
+            return element[0].href });
+            
+            //console.log( "finalImageArray: ", finalImageArray )
+        
+            const galleryContainer = document.querySelector('#gallery')
+            galleryContainer.innerHTML = ''
+        finalImageArray.forEach (imageUrl => {
+            const galleryImage = document.createElement('img');
+            galleryImage.src = imageUrl;
+            galleryContainer.append(galleryImage)
+        })
+    }
     let renderPrevItem = () =>{
+    if(currentIndex > 0){
       currentIndex -= 1
       renderSearch(resultArray[currentIndex])
+    }else{
+        window.alert('No previous image ')
+    }
     }
 
     let renderNextItem = () =>{
@@ -37,35 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
     searchContainer.addEventListener('submit', (e) => {
         e.preventDefault();
         const searchInput = e.target.search.value;
-        
+        currentIndex = 0
         fetch(`https://images-api.nasa.gov/search?q=${searchInput}`)
             .then(response => response.json())
             .then(dataObj => {
             //console.log(dataObj.collection.items)
             resultArray = dataObj.collection.items;
-            //console.log ( "resultArray: " , resultArray)
+            console.log ( "resultArray: " , resultArray)
+            if(resultArray.length > 0) {
             renderSearch(resultArray[currentIndex])
-
-            const newImgDataArray = resultArray.map( (dataObj) => { 
-                return dataObj.links } )
-                //console.log( "newImgDataArray: " , newImgDataArray )
-
-            const filteredArray = newImgDataArray.filter(element => {
-                return element !== undefined;})
-                //console.log( "filteredArray: " , filteredArray )
-
-            const finalImageArray = filteredArray.map(element => {
-                return element[0].href });
-                //console.log( "finalImageArray: ", finalImageArray )
-            
-            const galleryContainer = document.querySelector('#gallery')
-
-            finalImageArray.forEach (imageUrl => {
-                //console.log(imageUrl)
-                const galleryImage = document.createElement('img');
-                galleryImage.src = imageUrl;
-                galleryContainer.append(galleryImage)
-            })
+            galleryDisplay(dataObj[currentIndex])
+            }else{
+                window.alert("No results found")
+            }
         })
     })
 });
