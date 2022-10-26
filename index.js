@@ -14,34 +14,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let renderSearch = (spaceObject) => {
         // console.log(spaceObject);
-        imgTitle.innerText = spaceObject.data[0].title
-        imgDescription.innerText = spaceObject.data[0].description
+        imgTitle.innerText = spaceObject.data[0].title;
+        imgDescription.innerText = spaceObject.data[0].description;
         if (spaceObject.links !== undefined) {
-            imgNasa.src = spaceObject.links[0].href
-            
+            imgNasa.src = spaceObject.links[0].href;
         }
         else {
-            imgNasa.src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg'
+            imgNasa.src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg';
         }
     }
 
     function galleryDisplay(data) {
-        const newImgDataArray = resultArray.map( (data) => {
-            return data.links } )
+        const newImgDataArray = resultArray.map((data) => {
+            return data.links;})
             //console.log( "newImgDataArray: " , newImgDataArray )
         const filteredArray = newImgDataArray.filter(element => {
             return element !== undefined;})
             //console.log( "filteredArray: " , filteredArray )
         const finalImageArray = filteredArray.map(element => {
-            return element[0].href });
+            return element[0].href;})
             //console.log( "finalImageArray: ", finalImageArray )
-            const galleryContainer = document.querySelector('#gallery')
-            galleryContainer.innerHTML = ''
+
+        const galleryContainer = document.querySelector('#gallery');
+        galleryContainer.innerHTML = '';
+
         finalImageArray.forEach (imageUrl => {
             const galleryImage = document.createElement('img');
             galleryImage.className = "gallery-image";
             galleryImage.src = imageUrl;
-            galleryContainer.append(galleryImage)
+            galleryContainer.append(galleryImage);
         })
     }
 
@@ -50,14 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex -= 1
             renderSearch(resultArray[currentIndex])
         }
-        else{
-            window.alert('No previous image ')
+        else {
+            window.alert('No previous image')
         }
     }
     
     let renderNextItem = () => {
-        currentIndex += 1
-        renderSearch(resultArray[currentIndex])
+        if(currentIndex < 99) {
+            currentIndex += 1
+            renderSearch(resultArray[currentIndex])
+        }
+        else {
+            window.alert('No next image')
+        }
     }
 
     document.querySelector("#nextButton").addEventListener("click",renderNextItem);
@@ -86,5 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.alert("No results found")
             }
         })
+        
+        searchContainer.reset();
     })
 });
