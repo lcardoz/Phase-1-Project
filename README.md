@@ -1,4 +1,4 @@
-Welcome to the NASA Space Image Generator! Project by Calvin, Leah & Nathan :)
+Welcome to the NASA Space Image Generator! Project by Calvin, Leah, & Nathan :)
 
 We pulled data using NASA's Image and Video Library API (https://api.nasa.gov/) for our project.
 

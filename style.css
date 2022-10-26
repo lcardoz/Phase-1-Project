@@ -28,18 +28,66 @@ body {
 }
 
 h2 {
-    color:RED
+    color:RED;
+    text-align: center;
 }
+
+#image-description {
+    text-align: center;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 
 
 #nasa-image {
-    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#prevButton {
+    position: flex;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding-left: 13px;
+    padding-right: 13px;
+    margin-right: 7px;
+    margin-top: 7px;
+}
+#prevButton:hover {
+    background-color: royalblue;
+    transition: .2s;
+}
+#nextButton {
+    position: flex;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding-left: 13px;
+    padding-right: 13px;
+}
+#nextButton:hover {
+    background-color: royalblue;
+    transition: .2s;
 }
 
-.two-columns {
+.search-button {
+    position: flex;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding-left: 13px;
+    padding-right: 13px;
+}
+.search-button:hover {
+    background-color: royalblue;
+    transition: .2s;
+}
+
+/* .two-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 4em;
-}
+} */
 
 .one {
     transform: translate3d(0,0,0);
@@ -89,6 +137,5 @@ h2 {
     width: 400px;
     height: 400px;
 }
-
 
 /* Start https://www.cursors-4u.com */ * {cursor: url(https://cur.cursors-4u.net/nature/nat-7/nat606.cur), auto !important;} /* End https://www.cursors-4u.com */

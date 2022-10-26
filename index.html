@@ -19,19 +19,20 @@
       </div>
     </h1>
     <main class="two-columns">
-        <div>
+        <div id="display-results">
             <form id="search-form">
                 <input class = "search-bar" type="text" name="search" placeholder="Enter Any Space-Related Thing">
-                <input type="submit" value="Search">
+                <input class = "search-button" type="submit" value="Search">
             </form>
             <button  id="prevButton"> Prev </button>
             <button id="nextButton"> Next </button>
             <h2 id="image-title"></h2>
+            <div>
+                <img id="nasa-image" src="https://media.giphy.com/media/xqCzLbSCHNbH2/giphy.gif" alt="current image" />
+            </div>
             <p id="image-description"></p>
         </div>
-        <div>
-            <img id="nasa-image" src="https://images.pexels.com/photos/47367/full-moon-moon-bright-sky-47367.jpeg?cs=srgb&dl=pexels-pixabay-47367.jpg&fm=jpg" alt="current image" />
-        </div>
+       
     </main>
     <scrolling-carousel>
         <div class = 'one two'>
